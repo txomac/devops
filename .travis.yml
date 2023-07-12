@@ -2,5 +2,10 @@ language: node_js
 node_js:
   - "16"
 
+services:
+  - docker
+
 before_install:
   - npm i -g mocha
+  - docker build . -t jenkins/jenkins
+  - docker run --name container-jenkins -it jenkins/jenkins
